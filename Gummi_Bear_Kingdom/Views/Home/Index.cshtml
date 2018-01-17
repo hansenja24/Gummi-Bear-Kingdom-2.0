@@ -1,0 +1,24 @@
+﻿@using Gummi_Bear_Kingdom.Models
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Product> mostRecent = (List<Product>)ViewData["mostRecent"];
+}
+<html>
+<head>
+    <title>Gummi Bear Kingdom</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+</head>
+
+<body>
+    <h2>Gummi Bear Kingdom</h2>
+    <p>@Html.ActionLink("Products", "Index", "Products")</p>
+    <p>@Html.ActionLink("Reviews", "Index", "Reviews")</p>
+
+		   <h4>Top Reviewed Products</h4>
+
+    @foreach (var product in mostRecent)
+       {
+          <li>@product.Name</li>
+       }
+</body>
+</html>

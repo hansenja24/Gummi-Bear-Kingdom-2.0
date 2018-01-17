@@ -1,0 +1,50 @@
+﻿@model Gummi_Bear_Kingdom.Models.Product
+
+@{
+    ViewData["Title"] = "Product - Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Product Details</h2>
+<hr />
+
+<p>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</p>
+<p>@Html.DisplayNameFor(model => model.Description) : @Html.DisplayFor(model => model.Description)</p>
+<p>@Html.DisplayNameFor(model => model.Cost): @Html.DisplayFor(model => model.Cost)</p>
+
+<p>Average Rating: @Model.GetAverage()</p>
+
+
+<br><br>
+<p>This Product's Rating: </p>
+<table class="table">
+    <tr>
+        <th>
+            <p>Author</p>
+        </th>
+        <th>
+            <p>Rating</p>
+        </th>
+		<th>
+            <p>Comment</p>
+        </th>
+    </tr>
+
+    @foreach (var review in Model.Reviews)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelAuthor => review.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelRating => review.Rating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelComment => review.Comment)
+            </td>
+        </tr>
+    }
+</table>
+
+<p>@Html.ActionLink("Create Review", "Create", "Reviews", new {id = Model.ProductId})</p>
+
+<p>@Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }) | @Html.ActionLink("Back to List", "Index")</p>
